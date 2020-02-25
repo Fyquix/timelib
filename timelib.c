@@ -88,3 +88,19 @@ int exists_date(int day, int month, int year)
         return 1;
     }
 }
+
+int input_date(int *day, int *month, int *year) 
+{
+	
+    do
+    {
+      printf("Tag:");
+        scanf_s("%d", &*day);
+        printf("Monat:");
+        scanf_s("%d", &*month);
+        printf("Jahr:");
+        scanf_s("%d", &*year);
+    }
+    while(!exists_date(*day,*month,*year));	
+}
+

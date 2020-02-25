@@ -9,20 +9,11 @@
 
 int main()
 {
-    int tag,monat,jahr = 0;
+    int day,month,year = 0;
 
-    do
-    {
-      printf("Tag:");
-        scanf("%d", &tag);
-        printf("Monat:");
-        scanf("%d", &monat);
-        printf("Jahr:");
-        scanf("%d", &jahr);
-    }
-    while(!exists_date(tag,monat,jahr));
+    input_date(&day,&month,&year);
 
-    int TagImJahr = day_of_the_year(tag,monat,jahr);
+    int TagImJahr = day_of_the_year(day, month, year);
     printf("\nTag im Jahr: %d \n", TagImJahr);
 
 
