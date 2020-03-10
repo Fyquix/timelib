@@ -1,2 +1,2 @@
 # timelib
-Initial repository for a time library written in C.
+This Program calculates which day of the year the given Date is
