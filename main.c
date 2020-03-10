@@ -7,13 +7,12 @@
 #include <stdlib.h>
 #include "timelib.h"
 
+
+
 int main()
 {
-    int day,month,year = 0;
 
-    input_date(&day,&month,&year);
-
-    int TagImJahr = day_of_the_year(day, month, year);
+    int TagImJahr = day_of_the_year(input_date());
     printf("\nTag im Jahr: %d \n", TagImJahr);
 
 

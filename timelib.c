@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "timelib.h"
 
 int is_leapyear(int year)
 {
@@ -55,18 +56,18 @@ int get_days_for_month(int month, int year)
 }
 
 
-int day_of_the_year(int day, int month, int year)
+int day_of_the_year(struct date dateValue)
 {
     int tage[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
-    if(is_leapyear(year))
+    if(is_leapyear(dateValue.year))
     {
         tage[1] = 29;
     }
 
-    int AnzahlTag = day;
+    int AnzahlTag = dateValue.day;
     int i = 0;
-    while(i < month - 1)
+    while(i < dateValue.month - 1)
     {
         AnzahlTag = AnzahlTag + tage[i];
         i++;
@@ -76,10 +77,10 @@ int day_of_the_year(int day, int month, int year)
 }
 
 
-int exists_date(int day, int month, int year)
+int exists_date(struct date dateValue)
 {
-     int monthdays = get_days_for_month(month,year);
-    if(monthdays == -1 || year > 2400 || year < 1582 || day < 1 || day > monthdays)
+     int monthdays = get_days_for_month(dateValue.month, dateValue.year);
+    if(monthdays == -1 || dateValue.year > 2400 || dateValue.year < 1582 || dateValue.day < 1 || dateValue.day> monthdays)
     {
         return 0;
     }
@@ -89,18 +90,21 @@ int exists_date(int day, int month, int year)
     }
 }
 
-int input_date(int *day, int *month, int *year) 
+struct date input_date() 
 {
-	
+    struct date dateValue;
+
     do
     {
       printf("Tag:");
-        scanf_s("%d", &*day);
+        scanf_s("%d", &dateValue.day);
         printf("Monat:");
-        scanf_s("%d", &*month);
+        scanf_s("%d", &dateValue.month);
         printf("Jahr:");
-        scanf_s("%d", &*year);
+        scanf_s("%d", &dateValue.year);
     }
-    while(!exists_date(*day,*month,*year));	
+    while(!exists_date(dateValue));
+
+    return dateValue;
 }
 
