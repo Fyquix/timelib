@@ -12,7 +12,10 @@
 int main()
 {
 
+    //Funktionen aufrufen für die ganze Rechnung
     int TagImJahr = day_of_the_year(input_date());
+
+    //Ausgabe
     printf("\nTag im Jahr: %d \n", TagImJahr);
 
 

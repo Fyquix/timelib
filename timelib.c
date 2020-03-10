@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "timelib.h"
 
+//Testet ob das eingegebene Jahr ein Schaltjahr ist
 int is_leapyear(int year)
 {
     if(year < 1582)
@@ -35,7 +36,7 @@ int is_leapyear(int year)
     return 0;
 }
 
-
+//Checkt ob Monat existiert und wievuele Tage er hat
 int get_days_for_month(int month, int year)
 {
     int tage[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
@@ -45,7 +46,7 @@ int get_days_for_month(int month, int year)
         tage[1] = 29;
     }
 
-    if(month < 1 || month > 12)
+    if(month < 0 || month > 13)
     {
         return -1;
     }
@@ -55,7 +56,7 @@ int get_days_for_month(int month, int year)
     }
 }
 
-
+//Rechnet den wievielten Tag im Jahr der eingegebene Tag ist
 int day_of_the_year(struct date dateValue)
 {
     int tage[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
@@ -76,7 +77,7 @@ int day_of_the_year(struct date dateValue)
     return AnzahlTag;
 }
 
-
+//checkt ob das eingegebene Datum existiert
 int exists_date(struct date dateValue)
 {
      int monthdays = get_days_for_month(dateValue.month, dateValue.year);
@@ -90,18 +91,19 @@ int exists_date(struct date dateValue)
     }
 }
 
-struct date input_date() 
+//Eingabe von Tag, Monat, Jahr
+struct date input_date()
 {
     struct date dateValue;
 
     do
     {
       printf("Tag:");
-        scanf_s("%d", &dateValue.day);
+        scanf("%d", &dateValue.day);
         printf("Monat:");
-        scanf_s("%d", &dateValue.month);
+        scanf("%d", &dateValue.month);
         printf("Jahr:");
-        scanf_s("%d", &dateValue.year);
+        scanf("%d", &dateValue.year);
     }
     while(!exists_date(dateValue));
 
